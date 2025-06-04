@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniQuiz</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <div id="appContainer"> <div id="telaInicial" class="tela-container active">
+            <h1>UniQuiz - Seu Desafio de Conhecimento!</h1>
+            <button id="botaoJogar" class="main-btn">Jogar</button>
+        </div>
+
+        <div id="selecaoNivel" class="tela-container">
+            <h2>Pronto para o Nível <span id="nomeNivelAtual"></span>?</h2>
+            <button id="iniciarNivelBtn" class="main-btn">Iniciar Nível</button>
+        </div>
+
+        <div id="caixaUniQuiz" class="tela-container">
+            <h2 id="questaoUniQuiz" class="questaoUniQuiz"></h2>
+            <img id="caixaUniQuizimg" src="" alt="img" class="caixaUniQuizimg">
+            <div id="opcoesRespostas" class="opcoesRespostas">
+            </div>
+            <button id="botaoProximo" class="botaoProximo">Próxima Questão</button>
+        </div>
+
+        <div id="resultadoNivel" class="tela-container">
+            <h2>Nível Concluído!</h2>
+            <p>Sua pontuação neste nível: <span id="pontuacaoNivel"></span></p>
+            <button id="proximoNivelBtn" class="main-btn">Próximo Nível</button>
+            <button id="verPontuacaoTotalBtn" class="main-btn" style="display: none;">Ver Pontuação Total</button>
+        </div>
+
+        <div id="telaFinal" class="tela-container">
+            <h2>Quiz Concluído!</h2>
+            <p>Sua pontuação total: <span id="pontuacaoTotalFinal"></span></p>
+            <button id="recomecarQuiz" class="main-btn">Recomeçar Quiz</button>
+        </div>
+
+    </div> <script src="test.js"></script>
+</body>
+</html>
