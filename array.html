@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///C:/Users/rhayana_escobar/Documents/JavaScript/aula.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10/06/25</title>
+</head>
+<body>
+    <script>
+        const Frutas = ["uva", "melancia", "laranja", "bergamota"]
+        console.log(Frutas)
+
+        function BuscarPorPosicao(){
+            posicao = prompt("Escolha elemento do array") /* posicao mostra a posiçao do array */
+            alert(Frutas[posicao])
+        }
+        function TamanhoArray(){
+            alert(Frutas.length) /* tamanho mostra quantos arrays tem (.length) */
+        }
+        function AdicionarFinal(){
+            NovaFruta = prompt("Adicione uma fruta: ")
+            Frutas.push(NovaFruta) /* push adiciona elementos ao final */
+            //Frutas[Frutas.length] = NovaFruta <-- jeito "fácil"
+            console.log(Frutas)
+        }
+        function AdicionarComeco(){
+            OutraFruta = prompt("Adicione outra fruta: ")
+            Frutas.unshift(OutraFruta) /* unshift adiciona ao final */
+            console.log(Frutas) 
+        }
+        function Varrer(){
+            for (NovaFruta of Frutas){
+                if(NovaFruta.charAt(0) == "S") /* charat retorna a posição */
+                alert(NovaFruta)
+            }
+        }
+    </script>
+
+    <button onclick="BuscarPorPosicao()">Buscar Por Posicao</button>
+    <button onclick="TamanhoArray()">Tamanho Array</button>
+    <button onclick="AdicionarFinal()">Adicionar ao Final</button>
+    <button onclick="AdicionarComeco()">Adicionar ao Comeco</button>
+    <button onclick="Varrer()">Varrer</button>
+
+    <h3>Novo assuto, Vetores(array)</h3>
+    <h3>Declaramos assim: const ***** = ["*","*"]</h3>
+    <h3>PushUnshift - adiciona elementos. PopShift - remove elementos</h3>
+
+</body></html>
