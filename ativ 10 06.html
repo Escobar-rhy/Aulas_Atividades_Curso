@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/rhayana_escobar/Documents/JavaScript/atividade.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10/06/25</title>
+</head>
+<body>
+    <script>
+        const Nomes = ["Miguel", "Davi", "Matteo", "Felipe"]
+
+        function Varrer(){
+            elementoshtml = document.getElementById("Nomes")
+            var estruturaHTML = ""
+            for (NomesdoArray of Nomes){
+                estruturaHTML += '<p>' + NomesdoArray + "</p><br>"
+            }
+            elementoshtml.innerHTML = estruturaHTML
+        }
+    </script>
+
+    <button onclick="Varrer()">Varrer</button>
+    <div id="Nomes"><p>Miguel</p><br><p>Davi</p><br><p>Matteo</p><br><p>Felipe</p><br></div>
+    
+
+</body></html>
