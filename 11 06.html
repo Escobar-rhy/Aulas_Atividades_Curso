@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/rhayana_escobar/Documents/JavaScript/11%2006.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Artur</title>
+</head>
+<body>
+    <script>
+         const Frutas = ["uva", "melancia", "laranja", "bergamota"]
+        console.log(Frutas)
+        const numbers = [1, 2, 3, 4, 5];
+        numbers.forEach(function(num, i){
+            console.log(num * 2 + i);
+        });
+
+        numbers.forEach(num => {
+            console.log(num * 2) 
+        });
+        for () // incompleto...
+
+        function AdicionarFinal(){
+            NovaFruta = prompt("Adicione uma fruta: ")
+            Frutas.push(NovaFruta) /* push adiciona elementos ao final */
+            //Frutas[Frutas.length] = NovaFruta <-- jeito "fácil"
+            console.log(Frutas)
+        }
+        function Varrer(){
+            for (NovaFruta of Frutas){
+                if(NovaFruta.charAt(0) == "S") 
+                alert(NovaFruta)
+                console.log(NovaFruta)
+            }
+        // funcoes novas...
+        }
+        function Remover(){
+            Frutas.pop()
+            console.log(Frutas)
+        }
+        function Fatiar(){
+            pos1 = prompt("posição 1: ")
+            const Doces = Frutas.slice(pos1)
+            console.log(Doces)
+        }
+        function Recortar(){
+            pos1 = prompt("posição 1: ")
+            pos2 = prompt("posição 2: ")
+            const sucos = Frutas.splice(pos1,pos2)
+            console.log(pos1)
+            console.log(pos2)
+        }
+    </script> 
+
+    <button onclick="AdicionarFinal()">Adicionar ao Final</button>
+    <button onclick="Varrer()">Varrer</button>
+    <button onclick="Remover()">Remover</button>
+    <button onclick="Fatiar()">Fatiar</button>
+    <button onclick="Recortar()">Recortar</button>
+
+
+</body></html>
