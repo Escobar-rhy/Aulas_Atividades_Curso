@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)file:///C:/Users/rhayana_escobar/Documents/JavaScript/explicacaoaula11.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicações 11/06</title>
+</head>
+<body style="background-color: black;">
+    <h3 style="color: green;">Slice e Splice</h3>
+    <h4 style="color: aquamarine;">Exemplo de Slice: Para extrair e não modificar o array original (cria uma "fatia").</h4>
+
+    <h2 style="color: white;">const frutas = ['maçã', 'banana', 'laranja', 'uva', 'kiwi']; <br>
+
+        // Extrai do índice 1 (banana) até o índice 4 (uva - não incluído) <br>
+        const algumasFrutas = frutas.slice(1, 4); <br>
+        
+        console.log(algumasFrutas); // Saída: ['banana', 'laranja', 'uva'] <br>
+        console.log(frutas);        // Saída: ['maçã', 'banana', 'laranja', 'uva', 'kiwi'] (original intacto)</h2>
+
+    <h4 style="color: aquamarine;">Exemplo de Splice: Para modificar o array original (adicionar, remover ou substituir elementos).</h4>
+
+    <h2 style="color: white;">// ex de remoção <br>
+        const cores = ['vermelho', 'verde', 'azul', 'amarelo']; <br>
+        // A partir do índice 1, remove 2 elementos <br>
+        const coresRemovidas = cores.splice(1, 2); <br>
+        console.log(cores);         // Saída: ['vermelho', 'amarelo'] (array original modificado) <br>
+        console.log(coresRemovidas); // Saída: ['verde', 'azul'] (elementos que foram removidos)</h2>  
+
+    <h2 style="color: white;">// ex de adição <br>
+            const numeros = [1, 2, 5, 6]; <br>
+            // A partir do índice 2, remove 0 elementos, e adiciona 3 e 4 <br>
+            numeros.splice(2, 0, 3, 4); <br>
+            console.log(numeros); // Saída: [1, 2, 3, 4, 5, 6]</h2>      
+            
+    <h2 style="color: white;">// ex de substituição <br>
+        const letras = ['a', 'b', 'c', 'd'];<br>
+        // A partir do índice 1, remove 1 elemento ('b') e adiciona 'x' e 'y' <br>
+        letras.splice(1, 1, 'x', 'y'); <br>
+        console.log(letras); // Saída: ['a', 'x', 'y', 'c', 'd']</h2>
+
+    <h3 style="color: green;">ForEach: é um método de array em JavaScript que serve para executar uma função uma vez para cada elemento em um array.</h3>
+
+    <h2 style="color: white;">// ex foreach <br>
+        const nomes = ['Ana', 'Bruno', 'Carla', 'Diego']; <br>
+        // Usando forEach para saudar cada nome <br>
+        nomes.forEach(function(nomeAtual, indice) { <br>
+          console.log(`Olá, ${nomeAtual}! (Índice: ${indice})`); <br>
+        });
+        /* Saída no console: <br>
+        Olá, Ana! (Índice: 0) <br>
+        Olá, Bruno! (Índice: 1) <br>
+        Olá, Carla! (Índice: 2) <br>
+        Olá, Diego! (Índice: 3) 
+        */</h2>
+
+    <h2 style="color: white;">// ex 2 foreach <br>
+            const produtos = ['Laptop', 'Mouse', 'Teclado', 'Monitor']; <br>
+            // Imprime cada produto em maiúsculas <br>
+            produtos.forEach(produto =&gt; { <br>
+              console.log(produto.toUpperCase()); <br>
+            });
+            /* Saída no console: <br>
+            LAPTOP <br>
+            MOUSE <br>
+            TECLADO <br>
+            MONITOR
+            */</h2>
+
+        <h3 style="color: green;">Arrow Function: são uma maneira mais concisa de escrever funções em JavaScript. O nome "arrow" (seta) vem do operador =&gt; que é usado na sua declaração.</h3>
+
+
+
+
+</body></html>
