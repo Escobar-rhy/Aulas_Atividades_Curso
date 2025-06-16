@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)file:///C:/Users/rhayana_escobar/Documents/JavaScript/AulaDaniela.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16/06/25</title>
+</head>
+<body>
+    <script>
+        var IdadeMulher01 = Number(prompt("Digite idade mulher 01: "))
+        var IdadeMulher02 = Number(prompt("Digite idade mulher 02: "))
+        var IdadeHomem01 = Number(prompt("Digite idade homem 01: "))
+        var IdadeHomem02 = Number(prompt("Digite idade homem 02: "))
+        var HomemVelho, HomemNovo, MulherVelha, MulherNova
+        var soma01, soma02
+
+        if(IdadeHomem01>IdadeHomem02){
+            HomemVelho = IdadeHomem01
+            HomemNovo = IdadeHomem02
+        }
+        else{
+            HomemVelho = IdadeHomem02
+            HomemNovo = IdadeHomem01
+        }
+        if(IdadeMulher01>IdadeMulher02){
+            MulherVelha = IdadeMulher01
+            MulherNova = IdadeMulher02
+        }
+        else{
+            MulherVelha = IdadeMulher02
+            MulherNova = IdadeMulher01
+        }
+
+        soma01 = HomemVelho + MulherNova
+        soma02 = HomemNovo + MulherVelha
+
+        alert("Soma do Homem mais velho com a Mulher mais nova =  " + soma01)
+        alert("Soma do Homem mais novo com a Mulher mais nova =  " + soma02)
+
+    </script>
+
+</body></html>
