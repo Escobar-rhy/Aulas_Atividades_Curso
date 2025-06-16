@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/rhayana_escobar/Documents/JavaScript/outraativ.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula dia 16/06/25</title>
+</head>
+<body>
+    <script>
+        
+        var Alcool = 4.29
+        var Gasolina = 5.15
+        var Litros = Number(prompt("Litros: "))
+        var Comb = prompt("Informe G-gasolina ou A-alcool: ")
+        var ValorTotal, Desconto, ValoraPagar
+
+        if(Comb == "G" || Comb == "g"){
+            if(Litros<=20){
+                ValorTotal = Litros * Gasolina
+                Desconto = ValorTotal * 4 / 100
+            }
+            else{
+                Desconto = ValoraPagar * 6 / 100
+            }
+        }
+        else if(Comb == "A" || Comb == "a"){
+            ValorTotal = Litros * Alcool
+            if(Litros<=20){
+                Desconto = ValorTotal * 3 / 100
+            }
+            else{
+                Desconto = ValoraPagar * 5 / 100
+            }
+        }
+        ValoraPagar = ValorTotal - Desconto
+        alert("O valor a pagar é: " + ValoraPagar)
+
+    </script>
+
+</body></html>
