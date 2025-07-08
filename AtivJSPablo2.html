@@ -1,0 +1,147 @@
+1. Soma de 1 a 100
+Escreva um algoritmo que use a estrutura enquanto para somar todos os números de 1 a 100 e mostre o resultado final.
+<let contador = 1;
+let soma = 0;
+while (contador <= 100) {
+    soma += contador;
+    contador++; }
+console.log("A soma de 1 a 100 é: " + soma);>
+  
+2. Múltiplos de 5 até 50
+Crie um algoritmo que mostre todos os múltiplos de 5 de 5 até 50, usando a estrutura enquanto.
+<let numero = 5;
+console.log("Múltiplos de 5 até 50:");
+while (numero <= 50) {
+    console.log(numero);
+    numero += 5; }>
+  
+3. Contagem de Pares e Ímpares
+Solicite 10 números ao usuário (um por um) e conte quantos são pares e quantos são ímpares. Use enquanto e se/senao.
+<let contador = 0;
+let pares = 0;
+let impares = 0;
+while (contador < 10) {
+    let numero = parseInt(prompt("Digite o " + (contador + 1) + "º número:"));
+    if (numero % 2 === 0) {
+        pares++;
+    } else {
+        impares++;
+    }
+    contador++; }
+console.log("Total de números pares: " + pares);
+console.log("Total de números ímpares: " + impares);>
+  
+4. Validação de Senha
+Peça ao usuário uma senha. Enquanto ele não digitar a senha correta (1234), continue pedindo. Quando digitar corretamente, mostre uma mensagem de "Acesso Liberado".
+<let senhaCorreta = "1234";
+let senhaDigitada = "";
+
+while (senhaDigitada !== senhaCorreta) {
+    senhaDigitada = prompt("Digite a senha:");
+    if (senhaDigitada !== senhaCorreta) {
+        alert("Senha incorreta! Tente novamente.");
+    }
+}
+alert("Acesso Liberado!");
+console.log("Acesso Liberado!");>
+  
+5. Média de Notas com Quantidade Definida
+Solicite ao usuário quantas notas ele quer inserir. Depois, peça cada nota e calcule a média final. No fim, informe se a média é suficiente para aprovação (>= 7).
+<let quantidadeNotas = parseInt(prompt("Quantas notas você quer inserir?"));
+let somaNotas = 0;
+let contador = 0;
+while (contador < quantidadeNotas) {
+    let nota = parseFloat(prompt("Digite a " + (contador + 1) + "ª nota:"));
+    somaNotas += nota;
+    contador++;
+}
+let media = somaNotas / quantidadeNotas;
+console.log("A média final é: " + media.toFixed(2)); 
+if (media >= 7) {
+    console.log("Parabéns! Média suficiente para aprovação.");
+} else {
+    console.log("Média insuficiente. Necessário estudar mais.");
+}
+  
+6. Mês do Ano
+Peça ao usuário um número de 1 a 12 e mostre o nome do mês correspondente. Se digitar um número inválido, mostre uma mensagem de erro.
+<let numeroMes = parseInt(prompt("Digite um número de 1 a 12 para ver o mês correspondente:"));
+let nomeMes;
+if (numeroMes === 1) {
+    nomeMes = "Janeiro";
+} else if (numeroMes === 2) {
+    nomeMes = "Fevereiro";
+} else if (numeroMes === 3) {
+    nomeMes = "Março";
+} else if (numeroMes === 4) {
+    nomeMes = "Abril";
+} else if (numeroMes === 5) {
+    nomeMes = "Maio";
+} else if (numeroMes === 6) {
+    nomeMes = "Junho";
+} else if (numeroMes === 7) {
+    nomeMes = "Julho";
+} else if (numeroMes === 8) {
+    nomeMes = "Agosto";
+} else if (numeroMes === 9) {
+    nomeMes = "Setembro";
+} else if (numeroMes === 10) {
+    nomeMes = "Outubro";
+} else if (numeroMes === 11) {
+    nomeMes = "Novembro";
+} else if (numeroMes === 12) {
+    nomeMes = "Dezembro";
+} else {
+    nomeMes = "Número inválido. Por favor, digite um número entre 1 e 12.";
+}
+console.log(nomeMes);>
+  
+7. Login com Tentativas
+Solicite um nome de usuário e senha. O usuário tem no máximo 3 tentativas. Se acertar, mostre "Bem-vindo!". Se errar 3 vezes, mostre "Conta bloqueada".
+<let usuarioCorreto = "admin";
+let senhaCorreta = "senha123";
+let tentativas = 0;
+const MAX_TENTATIVAS = 3;
+let acessoLiberado = false;
+while (tentativas < MAX_TENTATIVAS && !acessoLiberado) {
+    let usuarioDigitado = prompt("Usuário:");
+    let senhaDigitada = prompt("Senha:");
+    if (usuarioDigitado === usuarioCorreto && senhaDigitada === senhaCorreta) {
+        console.log("Bem-vindo!");
+        acessoLiberado = true;
+    } else {
+        tentativas++;
+        if (tentativas < MAX_TENTATIVAS) {
+            console.log("Usuário ou senha incorretos. Tentativas restantes: " + (MAX_TENTATIVAS - tentativas));
+        } else {
+            console.log("Conta bloqueada. Você excedeu o número de tentativas.");
+        }
+    }
+}>
+          
+8. Número Primo
+Peça um número ao usuário e verifique se ele é primo ou não.
+<let numero = parseInt(prompt("Digite um número para verificar se é primo:"));
+let ehPrimo = true;
+if (numero <= 1) { 
+    ehPrimo = false;
+} else if (numero <= 3) { 
+    ehPrimo = true;
+} else if (numero % 2 === 0 || numero % 3 === 0) { 
+    ehPrimo = false;
+} else {
+    let i = 5;
+    while (i * i <= numero) {
+        if (numero % i === 0 || numero % (i + 2) === 0) {
+            ehPrimo = false;
+            break;
+        }
+        i += 6;
+    }
+}
+
+if (ehPrimo) {
+    console.log(numero + " é um número primo.");
+} else {
+    console.log(numero + " NÃO é um número primo.");
+}>
