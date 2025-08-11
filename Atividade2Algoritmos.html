@@ -1,0 +1,169 @@
+1. Soma de 1 a 100
+JavaScript
+
+let soma = 0;
+let numero = 1;
+while (numero <= 100) {
+  soma += numero;
+  numero++;
+}
+console.log("A soma de todos os números de 1 a 100 é: " + soma);
+
+  
+2. Múltiplos de 5 até 50
+JavaScript
+
+let numero = 5;
+while (numero <= 50) {
+  console.log(numero);
+  numero += 5;
+}
+
+  
+3. Contagem de Pares e Ímpares
+JavaScript
+
+let contador = 1;
+let pares = 0;
+let impares = 0;
+
+while (contador <= 10) {
+  let numero = parseInt(prompt("Digite o " + contador + "º número:"));
+  if (numero % 2 === 0) {
+    pares++;
+  } else {
+    impares++;
+  }
+  contador++;
+}
+console.log("Você digitou " + pares + " números pares e " + impares + " números ímpares.");
+
+  
+4. Validação de Senha
+JavaScript
+
+const senhaCorreta = "1234";
+let senhaDigitada = "";
+
+while (senhaDigitada !== senhaCorreta) {
+  senhaDigitada = prompt("Digite a senha:");
+  if (senhaDigitada !== senhaCorreta) {
+    alert("Senha incorreta. Tente novamente.");
+  }
+}
+alert("Acesso Liberado.");
+
+  
+5. Média de Notas com Quantidade Definida
+JavaScript
+
+let totalNotas = parseInt(prompt("Quantas notas você quer inserir?"));
+let contador = 0;
+let somaNotas = 0;
+
+while (contador < totalNotas) {
+  let nota = parseFloat(prompt("Digite a " + (contador + 1) + "ª nota:"));
+  somaNotas += nota;
+  contador++;
+}
+
+let media = somaNotas / totalNotas;
+let resultado = "A média final é: " + media.toFixed(2);
+
+if (media >= 7) {
+  resultado += "\nMédia suficiente para aprovação.";
+} else {
+  resultado += "\nMédia insuficiente para aprovação.";
+}
+
+alert(resultado);
+
+  
+6. Mês do Ano
+JavaScript
+
+let numeroMes = parseInt(prompt("Digite um número de 1 a 12:"));
+let nomeMes;
+
+if (numeroMes === 1) {
+  nomeMes = "Janeiro";
+} else if (numeroMes === 2) {
+  nomeMes = "Fevereiro";
+} else if (numeroMes === 3) {
+  nomeMes = "Março";
+} else if (numeroMes === 4) {
+  nomeMes = "Abril";
+} else if (numeroMes === 5) {
+  nomeMes = "Maio";
+} else if (numeroMes === 6) {
+  nomeMes = "Junho";
+} else if (numeroMes === 7) {
+  nomeMes = "Julho";
+} else if (numeroMes === 8) {
+  nomeMes = "Agosto";
+} else if (numeroMes === 9) {
+  nomeMes = "Setembro";
+} else if (numeroMes === 10) {
+  nomeMes = "Outubro";
+} else if (numeroMes === 11) {
+  nomeMes = "Novembro";
+} else if (numeroMes === 12) {
+  nomeMes = "Dezembro";
+} else {
+  nomeMes = "Número inválido. Por favor, digite um número entre 1 e 12.";
+}
+alert(nomeMes);
+
+  
+7. Login com Tentativas
+JavaScript
+
+const usuarioCorreto = "usuario";
+const senhaCorreta = "senha123";
+let tentativas = 0;
+let acessoLiberado = false;
+
+while (tentativas < 3 && !acessoLiberado) {
+  let usuarioDigitado = prompt("Nome de usuário:");
+  let senhaDigitada = prompt("Senha:");
+
+  if (usuarioDigitado === usuarioCorreto && senhaDigitada === senhaCorreta) {
+    alert("Bem-vindo!");
+    acessoLiberado = true;
+  } else {
+    tentativas++;
+    if (tentativas < 3) {
+      alert("Usuário ou senha incorretos. Tentativas restantes: " + (3 - tentativas));
+    }
+  }
+}
+
+if (!acessoLiberado) {
+  alert("Conta bloqueada.");
+}
+
+      
+8. Número Primo
+JavaScript
+
+let numero = parseInt(prompt("Digite um número:"));
+let ePrimo = true;
+
+if (numero <= 1) {
+  ePrimo = false;
+} else {
+  let divisor = 2;
+  while (divisor < numero) {
+    if (numero % divisor === 0) {
+      ePrimo = false;
+      break;
+    }
+    divisor++;
+  }
+}
+
+if (ePrimo) {
+  alert("O número " + numero + " é primo.");
+} else {
+  alert("O número " + numero + " não é primo.");
+}
