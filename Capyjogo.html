@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Froglike Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Froglike Game</h1>
+    <p>Use as setas para mover. Chegue ao topo para vencer!</p>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+    </div>
+    <div class="game-info">
+        <h3>Placar: <span id="score">0</span></h3>
+        <h3>Tempo: <span id="time">60</span>s</h3>
+        <p id="message" class="message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+css
+
+body {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #f1c40f;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.game-container {
+    border: 5px solid #3498db;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background-color: #bdc3c7;
+}
+
+canvas {
+    background-color: #34495e;
+    display: block;
+}
+
+.game-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.message {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-top: 10px;
+}
+
+
+js
+
+// Espera o DOM (Document Object Model) ser completamente carregado antes de executar o script.
+// Isso garante que os elementos HTML como o canvas já existam na página.
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Seleciona o elemento canvas e obtém seu contexto 2D, que é usado para desenhar.
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Seleciona os elementos HTML onde o placar, tempo e mensagens serão exibidos.
+    const scoreDisplay = document.getElementById('score');
+    const timeDisplay = document.getElementById('time');
+    const messageDisplay = document.getElementById('message');
+
+    // --- VARIÁVEIS DE CONFIGURAÇÃO DO JOGO ---
+    const gameWidth = canvas.width;
+    const gameHeight = canvas.height;
+    const playerSize = 20; // O tamanho em pixels do jogador (sapinho).
+    const roadHeight = gameHeight / 2 - playerSize * 2; // Altura da "calçada" antes da estrada.
+    let score = 0; // Placar inicial.
+    let time = 60; // Tempo de jogo inicial em segundos.
+    let gameOver = false; // Flag para controlar se o jogo terminou.
+    let gameInterval; // Armazena o ID do loop do jogo para poder pará-lo.
+    let timeInterval; // Armazena o ID do cronômetro para poder pará-lo.
+
+    // --- OBJETO DO JOGADOR ---
+    let player = {
+        x: gameWidth / 2 - playerSize / 2, // Posição X (horizontal) inicial, centralizada.
+        y: gameHeight - playerSize * 2,    // Posição Y (vertical) inicial, na parte inferior.
+        width: playerSize,
+        height: playerSize,
+        color: 'lime' // Cor do jogador.
+    };
+
+    // --- CONFIGURAÇÃO DOS CARROS ---
+    let cars = []; // Array que vai armazenar todos os objetos de carro.
+    const carSpeeds = [-2, -3, -4, 2, 3, 4]; // Possíveis velocidades. Negativo = move para a esquerda.
+    const carSize = 30; // Altura padrão dos carros.
+    const laneHeight = gameHeight / 10; // Altura de cada faixa de trânsito.
+    const numLanes = 5; // Número de faixas de trânsito.
+
+    // Cores para os carros, escolhidas aleatoriamente.
+    const carColors = [
+        '#e74c3c', '#3498db', '#9b59b6', '#f1c40f', '#1abc9c', '#e67e22'
+    ];
+
+    // --- FUNÇÕES DO JOGO ---
+
+    // **FUNÇÃO CORRIGIDA:** Cria os carros para todas as faixas de trânsito.
+    function createCars() {
+        cars = []; // Limpa o array de carros para recriá-los.
+        for (let i = 0; i < numLanes; i++) { // Loop para cada faixa.
+            const laneY = roadHeight + i * laneHeight; // Calcula a posição Y da faixa.
+            const speed = carSpeeds[Math.floor(Math.random() * carSpeeds.length)]; // Escolhe uma velocidade aleatória.
+            const color = carColors[Math.floor(Math.random() * carColors.length)]; // Escolhe uma cor aleatória.
+            const numCarsInLane = 3; // Define quantos carros por faixa.
+
+            // Loop para criar os carros dentro de cada faixa.
+            for (let j = 0; j < numCarsInLane; j++) {
+                const car = {
+                    x: Math.random() * gameWidth, // Posição X inicial aleatória.
+                    y: laneY,
+                    width: Math.random() * 50 + 40, // Largura aleatória.
+                    height: carSize,
+                    speed: speed,
+                    color: color
+                };
+                cars.push(car); // Adiciona o novo carro ao array.
+            }
+        }
+    }
+
+    // Desenha todos os elementos na tela (jogador, estrada, carros).
+    function draw() {
+        ctx.clearRect(0, 0, gameWidth, gameHeight); // Limpa a tela antes de desenhar.
+
+        // Desenha a área de partida (calçada).
+        ctx.fillStyle = '#2c3e50';
+        ctx.fillRect(0, gameHeight - playerSize * 2, gameWidth, playerSize * 2);
+
+        // Desenha a estrada.
+        ctx.fillStyle = '#34495e';
+        ctx.fillRect(0, roadHeight, gameWidth, gameHeight - roadHeight - playerSize * 2);
+
+        // Desenha a área de chegada.
+        ctx.fillStyle = '#27ae60';
+        ctx.fillRect(0, 0, gameWidth, roadHeight);
+
+        // Desenha o jogador.
+        ctx.fillStyle = player.color;
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+
+        // Desenha cada carro.
+        cars.forEach(car => {
+            ctx.fillStyle = car.color;
+            ctx.fillRect(car.x, car.y, car.width, car.height);
+        });
+    }
+
+    // Função principal de atualização do jogo, executada a cada frame (60 FPS).
+    function update() {
+        if (gameOver) return; // Se o jogo terminou, a função para de executar.
+
+        // Atualiza a posição de cada carro.
+        cars.forEach(car => {
+            car.x += car.speed; // Move o carro.
+            // Reposiciona o carro para o lado oposto quando ele sai da tela.
+            if (car.speed > 0 && car.x > gameWidth) {
+                car.x = -car.width;
+            } else if (car.speed < 0 && car.x < -car.width) {
+                car.x = gameWidth;
+            }
+        });
+
+        // Checa se o jogador colidiu com algum carro.
+        cars.forEach(car => {
+            // Lógica de detecção de colisão baseada em caixas.
+            if (
+                player.x < car.x + car.width &&
+                player.x + player.width > car.x &&
+                player.y < car.y + car.height &&
+                player.y + player.height > car.y
+            ) {
+                endGame('Você foi atropelado! Game Over.');
+            }
+        });
+
+        // Checa se o jogador chegou ao topo da tela (venceu a rodada).
+        if (player.y <= roadHeight) {
+            score++;
+            scoreDisplay.textContent = score;
+            resetPlayer(); // Move o jogador de volta para o início.
+        }
+
+        draw(); // Chama a função para redesenhar a tela com as novas posições.
+    }
+
+    // Reseta a posição do jogador para o ponto inicial.
+    function resetPlayer() {
+        player.x = gameWidth / 2 - playerSize / 2;
+        player.y = gameHeight - playerSize * 2;
+    }
+
+    // Escuta eventos de teclado para mover o jogador.
+    document.addEventListener('keydown', (e) => {
+        if (gameOver) return; // Não move o jogador se o jogo terminou.
+
+        const moveAmount = 20; // Quantos pixels o jogador move a cada tecla pressionada.
+
+        switch (e.key) {
+            case 'ArrowUp':
+                player.y -= moveAmount;
+                break;
+            case 'ArrowDown':
+                player.y += moveAmount;
+                break;
+            case 'ArrowLeft':
+                player.x -= moveAmount;
+                break;
+            case 'ArrowRight':
+                player.x += moveAmount;
+                break;
+        }
+
+        // Garante que o jogador não saia dos limites do canvas.
+        if (player.x < 0) player.x = 0;
+        if (player.x + player.width > gameWidth) player.x = gameWidth - player.width;
+        if (player.y < 0) player.y = 0;
+        if (player.y + player.height > gameHeight) player.y = gameHeight - player.height;
+    });
+
+    // Função para o cronômetro.
+    function countdown() {
+        time--; // Decrementa o tempo.
+        timeDisplay.textContent = time;
+        if (time <= 0) {
+            endGame('O tempo acabou! Game Over.');
+        }
+    }
+
+    // Função para terminar o jogo e exibir uma mensagem.
+    function endGame(message) {
+        gameOver = true;
+        clearInterval(gameInterval); // Para o loop principal do jogo.
+        clearInterval(timeInterval); // Para o cronômetro.
+        messageDisplay.textContent = message;
+        messageDisplay.style.color = '#e74c3c'; // Muda a cor da mensagem para vermelho.
+    }
+
+    // Inicia o jogo, resetando todas as variáveis e iniciando os loops.
+    function startGame() {
+        gameOver = false;
+        score = 0;
+        time = 60;
+        scoreDisplay.textContent = score;
+        timeDisplay.textContent = time;
+        messageDisplay.textContent = '';
+        createCars();
+        resetPlayer();
+        gameInterval = setInterval(update, 1000 / 60); // Inicia o loop de jogo a 60 FPS.
+        timeInterval = setInterval(countdown, 1000); // Inicia o cronômetro (a cada 1 segundo).
+    }
+
+    // Chama a função para iniciar o jogo quando o script é carregado.
+    startGame();
+});
